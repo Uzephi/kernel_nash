@@ -202,10 +202,10 @@ static void update_fdomain_capacity_request(int cpu)
 	freq_new = policy->freq_table[index_new].frequency;
 
 	if (freq_new > policy->max)
-		freq_new = policy->max;
+		freq_new = policy->cpuinfo.max_freq;
 
 	if (freq_new < policy->min)
-		freq_new = policy->min;
+		freq_new = policy->cpuinfo.min_freq;
 
 	trace_cpufreq_sched_request_opp(cpu, capacity, freq_new,
 					gd->requested_freq);
