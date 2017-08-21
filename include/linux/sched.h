@@ -2171,6 +2171,7 @@ static inline pid_t task_tgid_vnr(struct task_struct *tsk)
 	return __task_pid_nr_ns(tsk, __PIDTYPE_TGID, NULL);
 }
 
+
 /* obsolete, do not use */
 static inline pid_t task_pgrp_nr(struct task_struct *tsk)
 {
