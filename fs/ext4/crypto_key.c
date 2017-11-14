@@ -261,6 +261,7 @@ got_key:
 		goto out;
 	}
 
+
 	if (cmpxchg(&ei->i_crypt_info, NULL, crypt_info) == NULL)
 		crypt_info = NULL;
 out:
@@ -270,6 +271,7 @@ out:
 	if (crypt_info)
 		memzero_explicit(crypt_info->ci_raw_key,
 			sizeof(crypt_info->ci_raw_key));
+
 	ext4_free_crypt_info(crypt_info);
 	return res;
 }

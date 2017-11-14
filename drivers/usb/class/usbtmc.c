@@ -1105,7 +1105,7 @@ static int usbtmc_probe(struct usb_interface *intf,
 
 	dev_dbg(&intf->dev, "%s called\n", __func__);
 
-	data = kzalloc(sizeof(*data), GFP_KERNEL);
+	data = kmalloc(sizeof(*data), GFP_KERNEL);
 	if (!data)
 		return -ENOMEM;
 
@@ -1161,13 +1161,6 @@ static int usbtmc_probe(struct usb_interface *intf,
 				data->bulk_out);
 			break;
 		}
-	}
-
-	if (!data->bulk_out || !data->bulk_in) {
-		dev_err(&intf->dev, "bulk endpoints not found\n");
-		retcode = -ENODEV;
-		goto err_put;
-	}
 
 	retcode = get_capabilities(data);
 	if (retcode)
