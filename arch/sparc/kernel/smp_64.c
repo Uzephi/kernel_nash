@@ -1443,12 +1443,8 @@ void smp_send_stop(void)
 	int cpu;
 
 	if (tlb_type == hypervisor) {
-		int this_cpu = smp_processor_id();
-#ifdef CONFIG_SERIAL_SUNHV
-		sunhv_migrate_hvcons_irq(this_cpu);
-#endif
 		for_each_online_cpu(cpu) {
-			if (cpu == this_cpu)
+			if (cpu == smp_processor_id())
 				continue;
 #ifdef CONFIG_SUN_LDOMS
 			if (ldom_domaining_enabled) {
