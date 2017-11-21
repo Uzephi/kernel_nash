@@ -167,7 +167,6 @@ static int mmc_bus_suspend(struct device *dev)
 	if (mmc_bus_needs_resume(host))
 		return 0;
 	ret = host->bus_ops->suspend(host);
-
 	/*
 	 * bus_ops->suspend may fail due to some reason
 	 * In such cases if we return error to PM framework
