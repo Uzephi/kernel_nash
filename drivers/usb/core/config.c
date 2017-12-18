@@ -941,15 +941,6 @@ int usb_get_bos_descriptor(struct usb_device *dev)
 
 		if (total_len < length)
 			break;
-		}
-		cap_type = cap->bDevCapabilityType;
-		length = cap->bLength;
-		if (bos_desc_len[cap_type] && length < bos_desc_len[cap_type]) {
-			dev->bos->desc->bNumDeviceCaps = i;
-			break;
-		}
-
-		total_len -= length;
 
 		if (cap->bDescriptorType != USB_DT_DEVICE_CAPABILITY) {
 			dev_warn(ddev, "descriptor type invalid, skip\n");
